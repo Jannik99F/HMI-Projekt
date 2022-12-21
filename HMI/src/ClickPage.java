@@ -43,6 +43,7 @@ public class ClickPage {
         frame.add(this.timeLabel);
         time_thread.start();
 
+        //anstelle for, while timer != 0
         for(int i = 0; i < 30; i++) {
             sleep(getRandomNumber(5) * 1000);
             changeColor();

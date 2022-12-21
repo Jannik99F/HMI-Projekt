@@ -1,13 +1,12 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.util.Random;
 
 public class ClickPage {
     JFrame frame = new JFrame();
     JLabel scoreLabel = new JLabel();
-    static JLabel timeLabel = new JLabel();
-    static JButton[] buttons = new JButton[4];
+    JLabel timeLabel;
+    JButton[] buttons = new JButton[4];
     static int score = 0;
 
     ClickPage() {
@@ -23,14 +22,11 @@ public class ClickPage {
         scoreLabel.setFont(new Font("Dialog", 0, 100));
         frame.add(scoreLabel);
 
-        timeLabel.setBounds(1400, 440, 400, 100);
-        timeLabel.setText("" + score);
-        timeLabel.setFont(new Font("Dialog", 0, 100));
-        frame.add(timeLabel);
+        ActionListener actionListener = new ActionListener(buttons, scoreLabel, score);
 
         for (int i = 0; i < 4; i++) {
             buttons[i] = new JButton();
-            buttons[i].addActionListener(this::actionPerformed);
+            buttons[i].addActionListener(actionListener);
             buttons[i].setBackground(Color.RED);
             buttons[i].setFocusable(false);
             frame.add(buttons[i]);
@@ -42,9 +38,16 @@ public class ClickPage {
         buttons[2].setBounds(970, 960, 945, 50);
         buttons[3].setBounds(970, 900, 945, 50);
 
-        sleep(1000);
-        changeColor();
-        System.out.println("Pause");
+        Time time_thread = new Time(buttons);
+        this.timeLabel = time_thread.get_label();
+        frame.add(this.timeLabel);
+        time_thread.start();
+
+        for(int i = 0; i < 30; i++) {
+            sleep(getRandomNumber(5) * 1000);
+            changeColor();
+            System.out.println("Pause");
+        }
     }
 
     public static void sleep(long millis) {
@@ -54,38 +57,20 @@ public class ClickPage {
         }
     }
 
-    //@Override
-    public void actionPerformed(ActionEvent e) {
-        //todo if button get clicked
-        Time time = new Time();
-
-        for (int i = 0; i < 4; i++) {
-            if (e.getSource() == buttons[i]) {
-                if (buttons[i].getBackground() == Color.GREEN) {
-                    score += time.getValue();
-                } else score -= time.getValue();
-                scoreLabel.setText("" + score);
-            }
-        }
-    }
-
     public static int getRandomNumber(int x) {
         Random random = new Random();
         int randomNumber = random.nextInt(x);
         return randomNumber;
     }
 
-    public static void changeColor() {
+    public void changeColor() {
+        int timer = getRandomNumber(4);
         int x = getRandomNumber(3);
         buttons[0].setBackground(Color.RED);
         buttons[1].setBackground(Color.RED);
         buttons[2].setBackground(Color.RED);
         buttons[3].setBackground(Color.RED);
         buttons[x].setBackground(Color.GREEN);
-    }
-
-    public static void setTime(int x) {
-        timeLabel.setText("" + x);
+        sleep(1000);
     }
 }
-

@@ -1,7 +1,5 @@
 public class Main {
     public static void main(String[] args) {
-
-        Time time = new Time();
-        time.run();
+        ClickPage clickPage = new ClickPage();
     }
 }

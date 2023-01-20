@@ -23,13 +23,33 @@ public class FileHandler {
         }
         return players;
     }
-    public static void write(int score, String name, String filePath) throws IOException {
+    public void write(int score, String name, String filePath) throws IOException {
         //File path als "src/scores.txt" übergeben
         //zb Filehandler.write(score, name, "src/scores.txt");
         BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true));
         writer.write("(" + score + ")" + " " + name);//score wird in Klammern gespeichert
         writer.newLine();
         writer.close();
+    }
+    public void write(ArrayList<Player> players, String filePath) throws IOException {
+        BufferedWriter writer = new BufferedWriter(new FileWriter(filePath));
+        for (Player player : players) {
+            writer.write("(" + player.getScore() + ")" + " " + player.getName());
+            writer.newLine();
+        }
+        writer.close();
+    }
+    public void sort(ArrayList<Player> players){
+        //sortiert die ArrayList nach score
+        for (int i = 0; i < players.size(); i++) {
+            for (int j = 0; j < players.size() - 1; j++) {
+                if (players.get(j).getScore() < players.get(j + 1).getScore()) {
+                    Player temp = players.get(j);
+                    players.set(j, players.get(j + 1));
+                    players.set(j + 1, temp);
+                }
+            }
+        }
     }
 
 }

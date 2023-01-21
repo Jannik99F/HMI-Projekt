@@ -23,7 +23,10 @@ public class FileHandler {
         }
         return players;
     }
-    public void write(int score, String name, String filePath) throws IOException {
+    //writeproto als prototyp für neue Methode um nicht ganze Liste zu überschreiben
+    //sollte verwendet werden, damit nicht ganze Text datei in arraylist geladen werden muss
+    //nur einzelne Werte sollten überschrieben werden
+    public void writeproto(int score, String name, String filePath) throws IOException {
         //File path als "src/scores.txt" übergeben
         //zb Filehandler.write(score, name, "src/scores.txt");
         BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true));
@@ -31,7 +34,9 @@ public class FileHandler {
         writer.newLine();
         writer.close();
     }
-    public void write(ArrayList<Player> players, String filePath) throws IOException {
+    public void write(ArrayList<Player> players,int score, String name, String filePath) throws IOException {
+        players.add(new Player(score, name));
+        sort(players);
         BufferedWriter writer = new BufferedWriter(new FileWriter(filePath));
         for (Player player : players) {
             writer.write("(" + player.getScore() + ")" + " " + player.getName());

@@ -7,10 +7,14 @@ public class ActionListener implements java.awt.event.ActionListener {
     JLabel scoreLabel;
     int score;
 
-    public ActionListener(JButton buttons[], JLabel scoreLabel, int score){
+    public ActionListener(JButton[] buttons, JLabel scoreLabel, int score){
         this.buttons = buttons;
         this.scoreLabel = scoreLabel;
         this.score = score;
+    }
+
+    public ActionListener() {
+
     }
 
     public void actionPerformed(ActionEvent e) {

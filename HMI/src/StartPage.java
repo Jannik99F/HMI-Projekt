@@ -1,47 +1,55 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.IOException;
 
 public class StartPage {
-    JFrame frame = new JFrame();
-    JLabel startLabel = new JLabel();
-    JButton startButton = new JButton();
-    JTextArea scoresTextArea = new JTextArea();
-    JScrollPane scrollPane = new JScrollPane();
+    private static final int FRAME_WIDTH = 1920;
+    private static final int FRAME_HEIGHT = 1080;
+    private static final String BUTTON_TEXT = "Start Game";
+    private static final String LABEL_TEXT = "Start";
+    private static final String SCORES_FILE = "HMI/src/scores.txt";
+    private final JFrame frame = new JFrame();
+    private final JTextArea scoresTextArea = new JTextArea();
+
     StartPage() {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(1920, 1080);
+        frame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.getContentPane().setBackground(Color.WHITE);
-        frame.setLayout(null);
-        frame.setVisible(true);
 
+        // Set layout
+        frame.setLayout(new BorderLayout());
+        JLabel startLabel = new JLabel(LABEL_TEXT);
+        frame.add(startLabel, BorderLayout.CENTER);
+        JButton startButton = new JButton(BUTTON_TEXT);
+        frame.add(startButton, BorderLayout.SOUTH);
+        JScrollPane scrollPane = new JScrollPane();
+        frame.add(scrollPane, BorderLayout.EAST);
 
-
-
-//        startLabel to center
-        startLabel.setBounds(800, 100, 400, 100);
-        startLabel.setText("Start");
         startLabel.setFont(new Font("Dialog", Font.PLAIN, 100));
-        frame.add(startLabel);
-
-        startButton.setBounds(700, 500, 400, 100);
-        startButton.setText("Start Game");
         startButton.setBackground(Color.GREEN);
         startButton.setFocusable(false);
-        frame.add(startButton);
 
-        scrollPane.setBounds(50, 50, 400, 800);
+        // Add action listener to the button
+        startButton.addActionListener(new StartButtonListener());
+
+        // Set properties of the scroll pane and text area
+        scrollPane.setViewportView(scoresTextArea);
         scoresTextArea.setEditable(false);
         scoresTextArea.setLineWrap(true);
         scoresTextArea.setWrapStyleWord(true);
-        scrollPane.setViewportView(scoresTextArea);
-        frame.add(scrollPane);
 
-        // read the scores from the file and add them to the textarea
-        try {
-            BufferedReader br = new BufferedReader(new FileReader("HMI/src/scores.txt"));
+        // Read scores from file and add to the text area
+        readScoresFromFile();
+
+        frame.setVisible(true);
+    }
+
+    private void readScoresFromFile() {
+        try (BufferedReader br = new BufferedReader(new FileReader(SCORES_FILE))) {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] parts = line.split(" ");
@@ -49,9 +57,16 @@ public class StartPage {
                 String name = parts[1];
                 scoresTextArea.append(name + " - " + score + "\n");
             }
-            br.close();
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
+    public class StartButtonListener extends ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            frame.dispose();
+            new ClickPage();
+        }
+    }
 }
+

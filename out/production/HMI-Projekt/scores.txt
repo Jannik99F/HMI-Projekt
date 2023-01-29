@@ -1,6 +1,8 @@
+(700) Test2
 (600) Test
 (500) Johannes
 (400) Elias
 (300) Maximilian
 (200) Moritz
 (100) Max
+(-50) Lukas

@@ -2,12 +2,15 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.Random;
 
+import static java.lang.Thread.sleep;
+
 public class ClickPage {
     JFrame frame = new JFrame();
     JLabel scoreLabel = new JLabel();
     JLabel timeLabel;
     JButton[] buttons = new JButton[4];
     static int score = 0;
+
 
     ClickPage() {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -19,7 +22,7 @@ public class ClickPage {
 
         scoreLabel.setBounds(480, 440, 400, 100);
         scoreLabel.setText("" + score);
-        scoreLabel.setFont(new Font("Dialog", 0, 100));
+        scoreLabel.setFont(new Font("Dialog", Font.PLAIN, 100));
         frame.add(scoreLabel);
 
         ActionListener actionListener = new ActionListener(buttons, scoreLabel, score);
@@ -44,33 +47,25 @@ public class ClickPage {
         time_thread.start();
 
         for(int i = 0; i < 30; i++) {
-            sleep(getRandomNumber(5) * 1000);
+            try {
+                sleep(new Random().nextInt(4) * 1000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
             changeColor();
             System.out.println("Pause");
         }
     }
 
-    public static void sleep(long millis) {
+    public void changeColor() {
+        int x = new Random().nextInt(4);
+        for (JButton button : buttons) {
+            button.setBackground(Color.RED);
+        }
+        buttons[x].setBackground(Color.GREEN);
         try {
-            Thread.sleep(millis);
+            sleep(1000);
         } catch (InterruptedException ignored) {
         }
-    }
-
-    public static int getRandomNumber(int x) {
-        Random random = new Random();
-        int randomNumber = random.nextInt(x);
-        return randomNumber;
-    }
-
-    public void changeColor() {
-        int timer = getRandomNumber(4);
-        int x = getRandomNumber(3);
-        buttons[0].setBackground(Color.RED);
-        buttons[1].setBackground(Color.RED);
-        buttons[2].setBackground(Color.RED);
-        buttons[3].setBackground(Color.RED);
-        buttons[x].setBackground(Color.GREEN);
-        sleep(1000);
     }
 }

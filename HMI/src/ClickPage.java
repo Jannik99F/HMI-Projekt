@@ -16,11 +16,14 @@ public class ClickPage {
     JTextField enterName = new JTextField();
     JButton startButton = new JButton();
     JLabel evalLink = new JLabel();
-    
+    JTextArea scoresTextArea = new JTextArea();
+    JScrollPane scrollPane = new JScrollPane();
+
     // ### gamePanel ###
     JLabel scoreLabel = new JLabel();
     JLabel timeLabel;
     JButton[] buttons = new JButton[4];
+
     static int score = 0;
 
     ClickPage() {

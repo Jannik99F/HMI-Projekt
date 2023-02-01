@@ -23,7 +23,7 @@ public class Time extends Thread{
     public void run() {
         setValue(1);
 
-        for(int i = 10; i >= 0; i--){
+        for(int i = 30; i >= 0; i--){
             setTime(i);
             sleep(1000);
             if(i == 15){

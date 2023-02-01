@@ -1,42 +1,42 @@
 import javax.swing.*;
-import java.awt.*;
 
 public class Time extends Thread{
-    static int value = 1;
-    int stop = 1;
     JLabel timeLabel = new JLabel();
-    JButton[] buttons = new JButton[4];
-
-    public Time(JButton[] buttons){
+    static int value = 1;
+    static JButton[] buttons;
+    JLabel scoreLabel;
+    JButton startButton;
+    JScrollPane scrollPane;
+    Time(JLabel timeLabel, JLabel scoreLabel ,JButton[] buttons, JButton startButton, JScrollPane scrollPane){
+        this.timeLabel = timeLabel;
         this.buttons = buttons;
+        this.scoreLabel = scoreLabel;
+        this.startButton = startButton;
+        this.scrollPane = scrollPane;
     }
-
+    Time(){}
     public void run() {
-        for(int i = 30; i >= 0; i--){
+        setValue(1);
+
+        for(int i = 10; i >= 0; i--){
             setTime(i);
             sleep(1000);
             if(i == 15){
                 setValue(2);
             }
             if(i == 1){
-                setValue(0);
+                timeLabel.setVisible(false);
                 buttons[0].setVisible(false);
                 buttons[1].setVisible(false);
                 buttons[2].setVisible(false);
                 buttons[3].setVisible(false);
+                scoreLabel.setVisible(false);
+                startButton.setVisible(true);
+                scrollPane.setVisible(true);
+                setValue(0);
+                ButtonsListener.score = 0;
             }
         }
-    }
-
-    public static void setValue(int x) {
-        value = x;
-    }
-    public int getValue(){
-        return value;
-    }
-
-    public void setTime(int x) {
-        timeLabel.setText("" + x);
     }
 
     public static void sleep(long millis) {
@@ -45,11 +45,17 @@ public class Time extends Thread{
         } catch (InterruptedException ignored) {
         }
     }
+    public static void setValue(int x) {
+        value = x;
+    }
+    public void setTime(int x) {
+        timeLabel.setText("" + x);
+    }
+    public static int getValue(){
+        return value;
+    }
 
-    public JLabel get_label() {
-        timeLabel.setBounds(1400, 440, 400, 100);
-        timeLabel.setText("30");
-        timeLabel.setFont(new Font("Dialog", 0, 100));
-        return timeLabel;
+    public static JButton getButton(int x){
+        return buttons[x];
     }
 }

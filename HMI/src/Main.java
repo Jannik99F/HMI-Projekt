@@ -61,7 +61,7 @@ public class Main {
 
         //startpage
         evalLink.setBounds(185, 700, 630, 40);
-        evalLink.setText("Bitte nimm dir kurz Zeit und Bewerte das Spiel, kopiere dazu folgenden Link: https://forms.gle/wsoBcjnE9GfFPiF7A");
+        evalLink.setText("Bitte nimm dir kurz Zeit und Bewerte das Spiel, kopiere dazu folgenden Link : https://forms.gle/wsoBcjnE9GfFPiF7A");
         evalLink.setBackground(Color.LIGHT_GRAY);
         evalLink.setVisible(false);
         evalLink.setEditable(false);

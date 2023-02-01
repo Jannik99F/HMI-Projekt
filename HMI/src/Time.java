@@ -7,12 +7,14 @@ public class Time extends Thread{
     JLabel scoreLabel;
     JButton startButton;
     JScrollPane scrollPane;
-    Time(JLabel timeLabel, JLabel scoreLabel ,JButton[] buttons, JButton startButton, JScrollPane scrollPane){
+    JTextField nameInput;
+    Time(JLabel timeLabel, JLabel scoreLabel ,JButton[] buttons, JButton startButton, JScrollPane scrollPane, JTextField nameInput){
         this.timeLabel = timeLabel;
         this.buttons = buttons;
         this.scoreLabel = scoreLabel;
         this.startButton = startButton;
         this.scrollPane = scrollPane;
+        this.nameInput = nameInput;
     }
     Time(){}
     public void run() {
@@ -33,6 +35,7 @@ public class Time extends Thread{
                 scoreLabel.setVisible(false);
                 startButton.setVisible(true);
                 scrollPane.setVisible(true);
+                nameInput.setVisible(true);
                 setValue(0);
                 ButtonsListener.score = 0;
             }

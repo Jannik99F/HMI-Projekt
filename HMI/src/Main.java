@@ -11,9 +11,11 @@ public class Main {
     static JLabel timeLabel = new JLabel();
     static JButton[] buttons = new JButton[4];
     static JLabel scoreLabel = new JLabel();
-    private static final String SCORES_FILE = "src/scores.txt";
+    private static final String SCORES_FILE = "HMI/src/scores.txt";
     public static final JTextArea scoresTextArea = new JTextArea();
     public static JTextField nameInput = new JTextField();
+
+
     public static void main(String[] args) {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1920, 1080);
@@ -28,6 +30,7 @@ public class Main {
 
         nameInput.setBounds(860, 240, 200, 100);
         nameInput.setVisible(true);
+        nameInput.setText("Enter your name here");
         frame.add(nameInput);
 
         timeLabel.setBounds(1400, 440, 400, 100);
@@ -38,7 +41,7 @@ public class Main {
 
         JScrollPane scrollPane = new JScrollPane();
 
-        ActionListener startListener = new StartListener(startButton, frame, timeLabel,scoreLabel, buttons, scrollPane);
+        ActionListener startListener = new StartListener(startButton, frame, timeLabel,scoreLabel, buttons, scrollPane, nameInput);
         startButton.addActionListener(startListener);
         frame.add(startButton);
 

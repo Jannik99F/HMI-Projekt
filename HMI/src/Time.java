@@ -36,6 +36,7 @@ public class Time extends Thread{
                 startButton.setVisible(true);
                 scrollPane.setVisible(true);
                 nameInput.setVisible(true);
+                players.add(new Player(100, "Max"));
                 setValue(0);
                 ButtonsListener.score = 0;
             }

@@ -39,11 +39,16 @@ public class Time extends Thread{
                 scrollPane.setVisible(true);
                 nameInput.setVisible(true);
 
+                //replaces whitespace char with underscore
+                String nameCorrected = nameInput.getText();
+                nameCorrected = nameCorrected.replaceAll(" ", "_");
+                //https://stackoverflow.com/questions/9461306/how-to-change-spaces-to-underscore-and-make-string-case-insensitive
+
                 ArrayList<Player> playerList = FileHandler.readFile("HMI/src/scores.txt");
                 int score = Integer.parseInt(scoreLabel.getText());
-                //playerList.add(nameInput.getText(), score);
+
                 try {
-                    FileHandler.write(playerList, score, nameInput.getText(), "HMI/src/scores.txt");
+                    FileHandler.write(playerList, score, nameCorrected, "HMI/src/scores.txt");
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }

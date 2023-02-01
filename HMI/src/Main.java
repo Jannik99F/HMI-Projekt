@@ -33,7 +33,7 @@ public class Main {
 
         nameInput.setBounds(860, 240, 200, 100);
         nameInput.setVisible(true);
-        nameInput.setText("Enter your name here");
+        nameInput.setText("Enter your name here!");
         frame.add(nameInput);
 
         timeLabel.setBounds(1400, 440, 400, 100);
@@ -42,7 +42,7 @@ public class Main {
         timeLabel.setVisible(false);
         frame.add(timeLabel);
 
-        ArrayList<Player> playersList = new ArrayList<>();
+        //ArrayList<Player> playersList = new ArrayList<>();
         JScrollPane scrollPane = new JScrollPane();
 
         ActionListener startListener = new StartListener(startButton, frame, timeLabel,scoreLabel, buttons, scrollPane, nameInput);
@@ -86,15 +86,18 @@ public class Main {
 
     public static void readScoresFromFile() {
         try (BufferedReader br = new BufferedReader(new FileReader(SCORES_FILE))) {
+            //cleares score field to avoid duplicates
             scoresTextArea.selectAll();
             scoresTextArea.replaceSelection("");
+            //https://stackoverflow.com/questions/15798532/how-to-clear-jtextarea#:~:text=JTextArea0.,string%2C%20effectively%20clearing%20the%20JTextArea.
 
             String line;
+
             while ((line = br.readLine()) != null) {
                 String[] parts = line.split(" ");
                 int score = Integer.parseInt(parts[0].replace("(", "").replace(")", ""));
                 String name = parts[1];
-                scoresTextArea.append(name + " - " + score + "\n");
+                scoresTextArea.append(name + "  =  " + score + "\n");
             }
         } catch (IOException e) {
             e.printStackTrace();

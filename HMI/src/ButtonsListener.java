@@ -23,7 +23,7 @@ public class ButtonsListener implements ActionListener {
                 } else {
                     score -= time.getValue();
 
-                    Main.frame.getContentPane().setBackground(Color.RED);
+                    //Main.frame.getContentPane().setBackground(Color.RED);
                     //time.sleep(1000);
                     //Main.frame.getContentPane().setBackground(Color.WHITE);
                 }

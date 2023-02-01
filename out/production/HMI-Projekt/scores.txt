@@ -1,19 +1,14 @@
-(700) Test2
-(600) Test
-(500) Johannes
 (400) Elias
-(300) Maximilian
-(200) Moritz
-(100) Max
-(45) HAHSHSAHASHASHASHASH
-(44) Niki
-(39) Sackgesicht
-(39) Enter your name here
-(30) Enter your name here
-(29) PeterPeter
-(29) NiklasS
-(24) Niklas Alexander Seitz
-(13) Julia
-(13) nte
-(9) Ent
-(-50) Lukas
+(72) Test
+(61) Test2
+(61) Niklas_Seitz_3
+(50) Enter_your_name_here
+(40) Niki2
+(32) Johannes
+(32) Niki
+(30) Niklas_Seitz
+(28) Enter_your_name_here!
+(2) Enter_
+(-1) a
+(-12) Enter_
+(-13) Niklas_Seitz

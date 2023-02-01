@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.concurrent.CountDownLatch;
 
 public class ButtonsListener implements ActionListener {
     JButton[] buttons;
@@ -23,9 +24,19 @@ public class ButtonsListener implements ActionListener {
                 } else {
                     score -= time.getValue();
 
-                    //Main.frame.getContentPane().setBackground(Color.RED);
-                    //time.sleep(1000);
-                    //Main.frame.getContentPane().setBackground(Color.WHITE);
+                    Color customColor = new Color(255, 204, 203);
+                    Main.frame.getContentPane().setBackground(customColor);
+                    //changes bg colour for specific time
+                    Timer timer = new Timer(180, new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent arg0) {
+                            Main.frame.getContentPane().setBackground(Color.WHITE);
+                        }
+                    });
+                    timer.setRepeats(false); // Only execute once
+                    timer.start();
+                    //https://stackoverflow.com/questions/2258066/run-a-java-function-after-a-specific-number-of-seconds
+
                 }
                 scoreLabel.setText("" + score);
             }

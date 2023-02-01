@@ -1,4 +1,6 @@
 import javax.swing.*;
+import javax.swing.event.HyperlinkEvent;
+import javax.swing.event.HyperlinkListener;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
@@ -14,7 +16,7 @@ public class Main {
     private static final String SCORES_FILE = "HMI/src/scores.txt";
     public static final JTextArea scoresTextArea = new JTextArea();
     public static JTextField nameInput = new JTextField();
-
+    public static JTextField evalLink = new JTextField();
 
 
     public static void main(String[] args) {
@@ -40,7 +42,6 @@ public class Main {
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1000, 800);
-        //frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.getContentPane().setBackground(Color.WHITE);
         frame.setResizable(false);
         frame.setLayout(null);
@@ -58,6 +59,14 @@ public class Main {
         nameInput.setText("Enter your name here!");
         frame.add(nameInput);
 
+        //startpage
+        evalLink.setBounds(185, 700, 630, 40);
+        evalLink.setText("Bitte nimm dir kurz Zeit und Bewerte das Spiel, kopiere dazu folgenden Link: https://forms.gle/wsoBcjnE9GfFPiF7A");
+        evalLink.setBackground(Color.LIGHT_GRAY);
+        evalLink.setVisible(false);
+        evalLink.setEditable(false);
+        frame.add(evalLink);
+
         //gamepage
         timeLabel.setBounds(650, 240, 400, 100);
         timeLabel.setText("30");
@@ -67,7 +76,7 @@ public class Main {
 
         JScrollPane scrollPane = new JScrollPane();
 
-        ActionListener startListener = new StartListener(startButton, frame, timeLabel,scoreLabel, buttons, scrollPane, nameInput);
+        ActionListener startListener = new StartListener(startButton, frame, timeLabel,scoreLabel, buttons, scrollPane, nameInput, evalLink);
         startButton.addActionListener(startListener);
         frame.add(startButton);
 
@@ -90,8 +99,8 @@ public class Main {
         buttons[0].setBackground(Color.GREEN);
         buttons[0].setBounds(10, 550, 485, 100);
         buttons[1].setBounds(10, 650, 485, 100);
-        buttons[2].setBounds(495, 550, 485, 100);
-        buttons[3].setBounds(495, 650, 485, 100);
+        buttons[2].setBounds(495, 550, 480, 100);
+        buttons[3].setBounds(495, 650, 480, 100);
 
         scrollPane.setBounds(300, 370,400,300);
         scrollPane.setVisible(true);
@@ -100,6 +109,7 @@ public class Main {
         scoresTextArea.setEditable(false);
         scoresTextArea.setLineWrap(true);
         scoresTextArea.setWrapStyleWord(true);
+        //scoresTextArea.setAlignmentX(JTextArea.CENTER_ALIGNMENT);
 
         readScoresFromFile();
         frame.add(scrollPane);

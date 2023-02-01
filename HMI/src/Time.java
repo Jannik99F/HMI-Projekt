@@ -11,13 +11,15 @@ public class Time extends Thread{
     JButton startButton;
     JScrollPane scrollPane;
     JTextField nameInput;
-    Time(JLabel timeLabel, JLabel scoreLabel ,JButton[] buttons, JButton startButton, JScrollPane scrollPane, JTextField nameInput){
+    JTextField evalLink;
+    Time(JLabel timeLabel, JLabel scoreLabel ,JButton[] buttons, JButton startButton, JScrollPane scrollPane, JTextField nameInput, JTextField evalLink){
         this.timeLabel = timeLabel;
         this.buttons = buttons;
         this.scoreLabel = scoreLabel;
         this.startButton = startButton;
         this.scrollPane = scrollPane;
         this.nameInput = nameInput;
+        this.evalLink = evalLink;
     }
     Time(){}
     public void run() {
@@ -39,6 +41,7 @@ public class Time extends Thread{
                 startButton.setVisible(true);
                 scrollPane.setVisible(true);
                 nameInput.setVisible(true);
+                evalLink.setVisible(true);
 
                 //replaces whitespace char with underscore
                 String nameCorrected = nameInput.getText();

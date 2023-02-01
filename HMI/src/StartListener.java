@@ -10,7 +10,8 @@ public class StartListener implements ActionListener {
     JButton[] buttons;
     JScrollPane scrollPane;
     JTextField nameInput;
-    StartListener(JButton startButton, JFrame frame, JLabel timeLabel, JLabel scoreLabel, JButton[] buttons, JScrollPane scrollPane, JTextField nameInput){
+    JTextField evalLink;
+    StartListener(JButton startButton, JFrame frame, JLabel timeLabel, JLabel scoreLabel, JButton[] buttons, JScrollPane scrollPane, JTextField nameInput, JTextField evalLink){
         this.frame = frame;
         this.startButton = startButton;
         this.timeLabel = timeLabel;
@@ -18,6 +19,7 @@ public class StartListener implements ActionListener {
         this.buttons = buttons;
         this.scrollPane = scrollPane;
         this.nameInput = nameInput;
+        this.evalLink = evalLink;
     }
 
     @Override
@@ -28,6 +30,7 @@ public class StartListener implements ActionListener {
             nameInput.setVisible(false);
             startButton.setVisible(false);
             scrollPane.setVisible(false);
+            evalLink.setVisible(false);
             timeLabel.setVisible(true);
             scoreLabel.setText("0");
             scoreLabel.setVisible(true);
@@ -37,7 +40,7 @@ public class StartListener implements ActionListener {
             buttons[2].setVisible(true);
             buttons[3].setVisible(true);
 
-            Thread time_thread = new Thread(new Time(timeLabel, scoreLabel, buttons, startButton, scrollPane, nameInput));
+            Thread time_thread = new Thread(new Time(timeLabel, scoreLabel, buttons, startButton, scrollPane, nameInput, evalLink));
             Thread t2 = new Thread(new ColorChange());
             time_thread.start();
             t2.start();

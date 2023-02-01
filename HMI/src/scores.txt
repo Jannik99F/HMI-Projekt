@@ -1,11 +1,4 @@
-(262) Niklas_Seitz
-(173) Enter_your_name_here!
-(152) Enter_your_name_here!
-(133) Enter_your_name_here!
-(92) Enter_your_name_here!
-(72) Guenni
-(61) Markus
-(61) Peter_Lustig
-(50) Salkin
-(27) Enter_your_name_here!
-(15) Jannik
+(262) Peter_Lustig
+(173) Hans
+(152) Werner
+(133) Erwin

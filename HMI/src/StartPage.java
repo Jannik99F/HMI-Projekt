@@ -1,6 +1,5 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -22,19 +21,23 @@ public class StartPage {
 
         // Set layout
         frame.setLayout(new BorderLayout());
+
         JLabel startLabel = new JLabel(LABEL_TEXT);
         frame.add(startLabel, BorderLayout.CENTER);
+
         JButton startButton = new JButton(BUTTON_TEXT);
         frame.add(startButton, BorderLayout.SOUTH);
+
         JScrollPane scrollPane = new JScrollPane();
         frame.add(scrollPane, BorderLayout.EAST);
 
         startLabel.setFont(new Font("Dialog", Font.PLAIN, 100));
         startButton.setBackground(Color.GREEN);
         startButton.setFocusable(false);
+        ActionListener actionListener = new ActionListener(startButton, frame);
 
         // Add action listener to the button
-        startButton.addActionListener(new StartButtonListener());
+        startButton.addActionListener(actionListener);
 
         // Set properties of the scroll pane and text area
         scrollPane.setViewportView(scoresTextArea);
@@ -59,13 +62,6 @@ public class StartPage {
             }
         } catch (IOException e) {
             e.printStackTrace();
-        }
-    }
-
-    public class StartButtonListener extends ActionListener {
-        public void actionPerformed(ActionEvent e) {
-            frame.dispose();
-            new ClickPage();
         }
     }
 }

@@ -24,8 +24,6 @@ public class Main {
             System.out.println(player.getScore() + " " + player.getName());
         }
 */
-
-
     }
 
 }

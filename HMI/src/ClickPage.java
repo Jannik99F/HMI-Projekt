@@ -5,20 +5,19 @@ import java.util.Random;
 import static java.lang.Thread.sleep;
 
 public class ClickPage {
-    JFrame frame = new JFrame();
+    JFrame frame;
     JLabel scoreLabel = new JLabel();
     JLabel timeLabel;
     JButton[] buttons = new JButton[4];
     static int score = 0;
 
-
-    ClickPage() {
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    ClickPage(JFrame frame) {
+        this.frame = frame;
+        /*frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1920, 1080);
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.getContentPane().setBackground(Color.WHITE);
-        frame.setLayout(null);
-        frame.setVisible(true);
+        frame.setLayout(null);*/
 
         scoreLabel.setBounds(480, 440, 400, 100);
         scoreLabel.setText("" + score);
@@ -26,9 +25,13 @@ public class ClickPage {
         frame.add(scoreLabel);
 
         ActionListener actionListener = new ActionListener(buttons, scoreLabel, score);
+       // buttons[0] = new JButton();
+        //buttons[1] = new JButton();
+        //buttons[2] = new JButton();
+       // buttons[3] = new JButton();
 
         for (int i = 0; i < 4; i++) {
-            buttons[i] = new JButton();
+            //buttons[i] = new JButton();
             buttons[i].addActionListener(actionListener);
             buttons[i].setBackground(Color.RED);
             buttons[i].setFocusable(false);
@@ -45,6 +48,7 @@ public class ClickPage {
         this.timeLabel = time_thread.get_label();
         frame.add(this.timeLabel);
         time_thread.start();
+        //frame.setVisible(true);
 
         for(int i = 0; i < 30; i++) {
             try {
@@ -56,7 +60,6 @@ public class ClickPage {
             System.out.println("Pause");
         }
     }
-
     public void changeColor() {
         int x = new Random().nextInt(4);
         for (JButton button : buttons) {

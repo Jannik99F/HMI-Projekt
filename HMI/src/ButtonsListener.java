@@ -7,6 +7,7 @@ public class ButtonsListener implements ActionListener {
     JButton[] buttons;
     static int score;
     JLabel scoreLabel;
+
     ButtonsListener(JButton[] buttons, JLabel scoreLabel){
         this.buttons = buttons;
         this.scoreLabel = scoreLabel;
@@ -19,7 +20,13 @@ public class ButtonsListener implements ActionListener {
             if (e.getSource() == buttons[i]) {
                 if (buttons[i].getBackground() == Color.GREEN) {
                     score += time.getValue();
-                } else score -= time.getValue();
+                } else {
+                    score -= time.getValue();
+
+                    Main.frame.getContentPane().setBackground(Color.RED);
+                    //time.sleep(1000);
+                    //Main.frame.getContentPane().setBackground(Color.WHITE);
+                }
                 scoreLabel.setText("" + score);
             }
         }

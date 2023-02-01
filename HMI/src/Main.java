@@ -4,6 +4,7 @@ import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class Main {
     static JButton startButton = new JButton("Start");
@@ -16,7 +17,9 @@ public class Main {
     public static JTextField nameInput = new JTextField();
 
 
+
     public static void main(String[] args) {
+
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1920, 1080);
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -39,6 +42,7 @@ public class Main {
         timeLabel.setVisible(false);
         frame.add(timeLabel);
 
+        ArrayList<Player> playersList = new ArrayList<>();
         JScrollPane scrollPane = new JScrollPane();
 
         ActionListener startListener = new StartListener(startButton, frame, timeLabel,scoreLabel, buttons, scrollPane, nameInput);
@@ -82,6 +86,9 @@ public class Main {
 
     public static void readScoresFromFile() {
         try (BufferedReader br = new BufferedReader(new FileReader(SCORES_FILE))) {
+            scoresTextArea.selectAll();
+            scoresTextArea.replaceSelection("");
+
             String line;
             while ((line = br.readLine()) != null) {
                 String[] parts = line.split(" ");

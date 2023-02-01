@@ -7,8 +7,9 @@ import java.util.Collections;
 import java.util.Scanner;
 
 public class FileHandler {
-    public ArrayList<Player> readFile(String filePath) {
+    public static ArrayList<Player> readFile(String filePath) {
         ArrayList<Player> players = new ArrayList<>();
+
         try (Scanner scanner = new Scanner(new File(filePath))) {
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
@@ -24,9 +25,10 @@ public class FileHandler {
         return players;
     }
 
-    public void write(ArrayList<Player> players, int score, String name, String filePath) throws IOException {
+    public static void write(ArrayList<Player> players, int score, String name, String filePath) throws IOException {
         players.add(new Player(score, name));
         Collections.sort(players);
+
         try (FileWriter writer = new FileWriter(filePath)) {
             for (Player player : players) {
                 writer.write("(" + player.getScore() + ")" + " " + player.getName());

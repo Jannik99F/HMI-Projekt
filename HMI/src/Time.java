@@ -1,4 +1,6 @@
 import javax.swing.*;
+import java.io.IOException;
+import java.util.ArrayList;
 
 public class Time extends Thread{
     JLabel timeLabel = new JLabel();
@@ -36,7 +38,17 @@ public class Time extends Thread{
                 startButton.setVisible(true);
                 scrollPane.setVisible(true);
                 nameInput.setVisible(true);
-                players.add(new Player(100, "Max"));
+
+                ArrayList<Player> playerList = FileHandler.readFile("HMI/src/scores.txt");
+                int score = Integer.parseInt(scoreLabel.getText());
+                //playerList.add(nameInput.getText(), score);
+                try {
+                    FileHandler.write(playerList, score, nameInput.getText(), "HMI/src/scores.txt");
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+
+                Main.readScoresFromFile();
                 setValue(0);
                 ButtonsListener.score = 0;
             }

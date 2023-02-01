@@ -4,7 +4,6 @@ import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class Main {
     static JButton startButton = new JButton("Start");
@@ -40,22 +39,27 @@ public class Main {
         //source: https://stackoverflow.com/questions/4617615/how-to-set-nimbus-look-and-feel-in-main
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(1920, 1080);
-        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        frame.setSize(1000, 800);
+        //frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.getContentPane().setBackground(Color.WHITE);
+        frame.setResizable(false);
         frame.setLayout(null);
+        frame.setLocationRelativeTo(null);
 
+        //startpage
         startButton.setBackground(Color.GREEN);
         startButton.setFocusable(false);
-        startButton.setBounds(860, 440, 200, 100);
+        startButton.setBounds(400, 230, 200, 100);
         startButton.setVisible(true);
 
-        nameInput.setBounds(860, 240, 200, 100);
+        //startpage
+        nameInput.setBounds(400, 140, 200, 40);
         nameInput.setVisible(true);
         nameInput.setText("Enter your name here!");
         frame.add(nameInput);
 
-        timeLabel.setBounds(1400, 440, 400, 100);
+        //gamepage
+        timeLabel.setBounds(650, 240, 400, 100);
         timeLabel.setText("30");
         timeLabel.setFont(new Font("Dialog", 0, 100));
         timeLabel.setVisible(false);
@@ -67,7 +71,8 @@ public class Main {
         startButton.addActionListener(startListener);
         frame.add(startButton);
 
-        scoreLabel.setBounds(480, 440, 400, 100);
+        //gamepage
+        scoreLabel.setBounds(250, 240, 400, 100);
         scoreLabel.setFont(new Font("Dialog", Font.PLAIN, 100));
         frame.add(scoreLabel);
 
@@ -83,12 +88,12 @@ public class Main {
         }
 
         buttons[0].setBackground(Color.GREEN);
-        buttons[0].setBounds(10, 960, 945, 50);
-        buttons[1].setBounds(10, 900, 945, 50);
-        buttons[2].setBounds(970, 960, 945, 50);
-        buttons[3].setBounds(970, 900, 945, 50);
+        buttons[0].setBounds(10, 550, 485, 100);
+        buttons[1].setBounds(10, 650, 485, 100);
+        buttons[2].setBounds(495, 550, 485, 100);
+        buttons[3].setBounds(495, 650, 485, 100);
 
-        scrollPane.setBounds(760, 600,400,400);
+        scrollPane.setBounds(300, 370,400,300);
         scrollPane.setVisible(true);
 
         scrollPane.setViewportView(scoresTextArea);

@@ -20,6 +20,25 @@ public class Main {
 
     public static void main(String[] args) {
 
+        //change design to nimbus
+        try {
+            for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (Exception e) {
+            // If Nimbus is not available, fall back to cross-platform
+            try {
+                UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
+            } catch (Exception ex) {
+                ex.printStackTrace();
+                System.out.println("An error has occurred, program exit.");
+            }
+        }
+        //source: https://stackoverflow.com/questions/4617615/how-to-set-nimbus-look-and-feel-in-main
+
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1920, 1080);
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -42,7 +61,6 @@ public class Main {
         timeLabel.setVisible(false);
         frame.add(timeLabel);
 
-        //ArrayList<Player> playersList = new ArrayList<>();
         JScrollPane scrollPane = new JScrollPane();
 
         ActionListener startListener = new StartListener(startButton, frame, timeLabel,scoreLabel, buttons, scrollPane, nameInput);

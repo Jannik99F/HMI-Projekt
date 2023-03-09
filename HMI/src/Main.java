@@ -1,6 +1,4 @@
 import javax.swing.*;
-import javax.swing.event.HyperlinkEvent;
-import javax.swing.event.HyperlinkListener;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
@@ -109,7 +107,6 @@ public class Main {
         scoresTextArea.setEditable(false);
         scoresTextArea.setLineWrap(true);
         scoresTextArea.setWrapStyleWord(true);
-        //scoresTextArea.setAlignmentX(JTextArea.CENTER_ALIGNMENT);
 
         readScoresFromFile();
         frame.add(scrollPane);
@@ -119,7 +116,6 @@ public class Main {
 
     public static void readScoresFromFile() {
         try (BufferedReader br = new BufferedReader(new FileReader(SCORES_FILE))) {
-            //cleares score field to avoid duplicates
             scoresTextArea.selectAll();
             scoresTextArea.replaceSelection("");
             //https://stackoverflow.com/questions/15798532/how-to-clear-jtextarea#:~:text=JTextArea0.,string%2C%20effectively%20clearing%20the%20JTextArea.
